@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import SearchForm from '~/components/molecules/SearchForm';
+import SearchForm from '~/components/molecules/form/SearchForm';
 export default {
   components: {
     SearchForm

@@ -9,7 +9,7 @@
         <v-text-field
           v-model="input"
           :append-icon="input ? 'close' : undefined"
-          label="検索ワードを入力"
+          :label="label"
           @click:append="$emit('reset')"
         />
       </v-flex>
@@ -29,6 +29,11 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    label: {
+      type: String,
+      required: false,
+      default: '検索ワードを入力'
     }
   },
   computed: {
