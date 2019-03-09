@@ -1,18 +1,25 @@
 <template>
   <div>
-    <v-text-field
-      v-model="input"
-      :append-icon="input ? 'close' : undefined"
-      label="検索ワードを入力"
-      class="inline"
-      @click:append="$emit('reset')"
-    />
-    <v-btn
-      @click="search"
-      color="primary"
+    <v-layout
+      row
+      justify-center
+      align-center
     >
-      search
-    </v-btn>
+      <v-flex xs7>
+        <v-text-field
+          v-model="input"
+          :append-icon="input ? 'close' : undefined"
+          label="検索ワードを入力"
+          @click:append="$emit('reset')"
+        />
+      </v-flex>
+      <v-btn
+        @click="search"
+        color="primary"
+      >
+        検索する
+      </v-btn>
+    </v-layout>
   </div>
 </template>
 
@@ -43,7 +50,4 @@ export default {
 </script>
 
 <style scoped>
-  .inline {
-    display: inline-block;
-  }
 </style>
