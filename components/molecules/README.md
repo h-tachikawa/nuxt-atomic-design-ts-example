@@ -6,6 +6,7 @@
 - 内部にMolecules以上のコンポーネントを含まない。
 - 再利用されるコンポーネントである。
 - Statelessであることが望ましい。
+  - いわゆるPresentational Component。
 - 単一責任である。
 - Vuexモジュールへの参照は行わないのが望ましい。
 ## Example

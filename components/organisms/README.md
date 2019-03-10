@@ -3,6 +3,7 @@
 - 内部にOrganisms以上のコンポーネントを含まない。
 - 再利用性は低くてよい。
 - Statefulである。
+  - いわゆるContainer Component。
 - Vuexモジュールを参照しても良い。
 ## Example
 - ヘッダー
