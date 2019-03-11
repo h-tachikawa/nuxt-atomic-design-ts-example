@@ -3,6 +3,7 @@
     <v-card
       :height="height"
       :width="width"
+      @click="$emit('click')"
     >
       <v-img
         :src="thumbnail"

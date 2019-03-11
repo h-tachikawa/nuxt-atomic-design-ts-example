@@ -3,8 +3,8 @@
 - 内部にOrganisms以上のコンポーネントを含まない。
 - 再利用性は低くてよい。
 - Statefulである。
-  - いわゆるContainer Component。
 - Vuexモジュールを参照しても良い。
+- ディレクトリはpageごとに分けるのが良いと思われる。
 ## Example
 - ヘッダー
 - フッター

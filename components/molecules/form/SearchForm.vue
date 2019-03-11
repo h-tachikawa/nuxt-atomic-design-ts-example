@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="search-form">
     <v-layout
       row
       justify-center
@@ -17,7 +17,7 @@
         @click="search"
         color="primary"
       >
-        検索する
+        {{ btnLabel }}
       </v-btn>
     </v-layout>
   </div>
@@ -34,6 +34,11 @@ export default {
       type: String,
       required: false,
       default: '検索ワードを入力'
+    },
+    btnLabel: {
+      type: String,
+      required: false,
+      default: '検索する'
     }
   },
   computed: {
@@ -53,6 +58,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

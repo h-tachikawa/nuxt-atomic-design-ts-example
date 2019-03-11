@@ -6,8 +6,9 @@
 - 内部にMolecules以上のコンポーネントを含まない。
 - 再利用されるコンポーネントである。
 - Statelessであることが望ましい。
-  - いわゆるPresentational Component。
+  - いわゆるPresentational Componentになるのが望ましい？
 - 単一責任である。
 - Vuexモジュールへの参照は行わないのが望ましい。
 ## Example
 - 検索フォーム(入力欄と検索ボタンのAtomの組み合わせ)
+- カード

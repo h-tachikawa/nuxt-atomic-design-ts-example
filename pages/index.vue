@@ -10,6 +10,7 @@
         v-model="searchWord"
         @search="searchIllust"
         @reset="resetSearchWord"
+        btn-label="検索"
       />
       <v-divider />
       <IllustList
@@ -39,7 +40,7 @@ export default {
   },
   computed: {
     illustList () {
-      return this.$store.getters['illust/illustList']
+      return this.$store.getters['illust/filterdIllustList']
     }
   },
   methods: {
