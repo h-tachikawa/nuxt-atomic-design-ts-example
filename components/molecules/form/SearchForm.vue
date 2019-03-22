@@ -23,38 +23,28 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    value: {
-      type: String,
-      required: false
-    },
-    label: {
-      type: String,
-      required: false,
-      default: '検索ワードを入力'
-    },
-    btnLabel: {
-      type: String,
-      required: false,
-      default: '検索する'
-    }
-  },
-  computed: {
-    input: {
-      get() {
-        return this.value
-      },
-      set(input) {
-        this.$emit('input', input)
-      }
-    }
-  },
-  methods: {
-    search() {
-      this.$emit('search')
-    }
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+@Component
+export default class extends Vue {
+  @Prop() value!: string
+  @Prop() label!: string
+  @Prop({
+    default: '検索する'
+  })
+  btnLabel!: string
+
+  get input() {
+    return this.value
   }
-};
+
+  set input(inp) {
+    this.$emit('input', inp)
+  }
+
+  public search() {
+    this.$emit('search')
+  }
+}
 </script>

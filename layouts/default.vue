@@ -40,27 +40,26 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      clipped: true,
-      drawer: true,
-      fixed: false,
-      items: [
-        {
-          icon: 'search',
-          title: 'イラスト検索',
-          to: '/'
-        },
-        {
-          icon: 'favorite',
-          title: 'お気に入りしたイラスト',
-          to: '/inspire'
-        }
-      ],
-      title: 'イラスト検索システム(仮)'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
+export default class Default extends Vue {
+  public clipped = true
+  public drawer = true
+  public fixed = false
+  public items = [
+    {
+      icon: 'search',
+      title: 'イラスト検索',
+      to: '/'
+    },
+    {
+      icon: 'favorite',
+      title: 'お気に入りしたイラスト',
+      to: '/inspire'
     }
-  }
+  ]
+  public title = 'イラスト検索システム(仮)'
 }
 </script>

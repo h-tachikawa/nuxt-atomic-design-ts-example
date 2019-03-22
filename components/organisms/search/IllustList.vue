@@ -6,7 +6,8 @@
     >
       <template v-if="$vuetify.breakpoint.lgAndUp">
         <v-flex
-          v-for="illust in illustList"
+          v-for="(illust, index) in illustList"
+          :key="index"
           xs6
           mb-4
           mt-4
@@ -28,7 +29,8 @@
       </template>
       <template v-else>
         <v-flex
-          v-for="illust in illustList"
+          v-for="(illust, index) in illustList"
+          :key="index"
           xs12
           mb-4
           mt-4
@@ -52,25 +54,25 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import IllustCard from '~/components/molecules/card/IllustCard'
-export default {
+import { Illust } from '~/store/illust';
+
+@Component({
   components: {
     IllustCard
-  },
-  props: {
-    illustList: {
-      type: Array,
-      required: true
-    }
-  },
-  computed: {
-  },
-  methods: {
-    clickHandler (illust) {
-      console.log('clicked')
-      console.log(illust)
-    }
+  }
+})
+export default class IllustList extends Vue {
+  @Prop({
+    required: true
+  })
+  illustList: Illust[]
+
+  public clickHandler (illust) {
+    console.log('clicked')
+    console.log(illust)
   }
 }
 </script>

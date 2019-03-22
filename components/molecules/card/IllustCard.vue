@@ -14,30 +14,27 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
-      default: 'タイトルなし'
-    },
-    thumbnail: {
-      type: String,
-      required: true
-    },
-    height: {
-      type: String
-    },
-    width: {
-      type: String
-    }
-  },
-  methods: {
-  }
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+@Component
+export default class IllustCard extends Vue {
+  @Prop({
+    required: true,
+    default: 'タイトルなし'
+  })
+  title: string
+
+  @Prop({
+    required: true
+  })
+  thumbnail: string
+
+  @Prop() height: string
+
+  @Prop() width: string
 }
 </script>
 
 <style scoped>
-
 </style>

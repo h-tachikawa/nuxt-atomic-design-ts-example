@@ -5,7 +5,11 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    ecmaVersion: true,
+    parser: "typescript-eslint-parser",
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
   extends: [
     '@nuxtjs',
@@ -16,5 +20,6 @@ module.exports = {
     "no-console": "off",
     "semi": 0,
     "space-before-function-paren": 0,
+    "no-unused-vars": 0,
   }
 }

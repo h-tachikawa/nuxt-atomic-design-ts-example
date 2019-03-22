@@ -20,36 +20,35 @@
   </v-layout>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
 import SearchForm from '~/components/molecules/form/SearchForm'
 import IllustList from '~/components/organisms/search/IllustList'
-import { ILLUST_MODULE, ILLUST_SEARCH, REFLESH_ILLUST_LIST } from '~/store/illust'
+import { Illust, ILLUST_MODULE, ILLUST_SEARCH, REFLESH_ILLUST_LIST } from '~/store/illust'
 
-export default {
+@Component({
   components: {
     SearchForm,
     IllustList
-  },
-  data() {
-    return {
-      searchWord: ''
-    }
-  },
-  mounted () {
+  }
+})
+export default class Index extends Vue {
+  public searchWord: string = ''
+
+  public mounted (): void {
     this.$store.dispatch(`${ILLUST_MODULE}/${REFLESH_ILLUST_LIST}`)
-  },
-  computed: {
-    illustList () {
-      return this.$store.getters['illust/filterdIllustList']
-    }
-  },
-  methods: {
-    searchIllust() {
-      this.$store.dispatch(`${ILLUST_MODULE}/${ILLUST_SEARCH}`, this.searchWord)
-    },
-    resetSearchWord() {
-      this.searchWord = ''
-    }
+  }
+
+  public get illustList (): Illust[] {
+    return this.$store.getters['illust/filterdIllustList']
+  }
+
+  public searchIllust(): void {
+    this.$store.dispatch(`${ILLUST_MODULE}/${ILLUST_SEARCH}`, this.searchWord)
+  }
+
+  public resetSearchWord(): void {
+    this.searchWord = ''
   }
 }
 </script>
