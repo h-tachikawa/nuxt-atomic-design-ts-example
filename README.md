@@ -1,6 +1,6 @@
-# nuxt-atomic-design-example
+# nuxt-atomic-design-with-ts-example
 
-> My superb Nuxt.js project
+Nuxt.js + TypeScript + Atomic Designの実装例
 
 ## Build Setup
 
