@@ -10,31 +10,30 @@ export class IllustModule {
   @State() private illustList: Illust[] = [];
 
   @Mutation()
-  public REPLACE_ILLUST_LIST(newIllustList: Illust[]) {
+  public REPLACE_ILLUST_LIST(newIllustList: Illust[]): void {
     this.illustList = newIllustList
   }
 
   @Mutation()
-  public REFRESH_ILLUST_LIST() {
+  public REFRESH_ILLUST_LIST(): void {
     this.illustList = []
   }
 
   @Getter()
-  public get filteredIllustList() {
+  public get filteredIllustList(): Illust[] {
     // APIから5000件データが返ってくるが開発しにくいので10件に絞って返す
     return this.illustList.slice(0, 10)
   }
 
   @Action()
-  public search() {
-    axios.get('https://jsonplaceholder.typicode.com/photos').then((illustResponse: IllustResponse) => {
-      console.log('response', illustResponse);
-      this.REPLACE_ILLUST_LIST(illustResponse.data)
-    })
+  public async search(): Promise<void> {
+    const illustResponse: IllustResponse = await axios.get('https://jsonplaceholder.typicode.com/photos')
+    console.log('response', illustResponse);
+    this.REPLACE_ILLUST_LIST(illustResponse.data)
   }
 
   @Action()
-  public refresh() {
+  public refresh(): void {
     this.REFRESH_ILLUST_LIST()
   }
 }
