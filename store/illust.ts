@@ -6,7 +6,19 @@ export interface IllustResponse {
   data: Illust[]
 }
 
-export class IllustModule {
+/**
+ * Vuex Storeのinterfaceを定義しておくことで、テストなどの際に実装を差し替えられるようにしておく。
+ * 例えば、Getterで必ず固定値を返すようにして、Storeを使用する側のユニットテストをしやすくするなどの効果を狙っている。
+ */
+export interface IIllustStore {
+  // Getter
+  filteredIllustList: Illust[]
+  // Action
+  search(): Promise<void>
+  refresh(): void
+}
+
+export class IllustStore implements IIllustStore {
   @State() private illustList: Illust[] = [];
 
   @Mutation()
@@ -28,7 +40,6 @@ export class IllustModule {
   @Action()
   public async search(): Promise<void> {
     const illustResponse: IllustResponse = await axios.get('https://jsonplaceholder.typicode.com/photos')
-    console.log('response', illustResponse);
     this.REPLACE_ILLUST_LIST(illustResponse.data)
   }
 

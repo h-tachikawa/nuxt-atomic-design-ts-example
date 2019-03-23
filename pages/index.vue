@@ -8,9 +8,10 @@
     <v-flex xs12>
       <SearchForm
         v-model="searchWord"
+        btn-label="検索"
+        label="検索ワードを入力"
         @search="searchIllust"
         @reset="resetSearchWord"
-        btn-label="検索"
       />
       <v-divider />
       <IllustList
@@ -35,19 +36,19 @@ import { VStore } from '@/store';
   }
 })
 export default class Index extends Vue {
-  private store: VStore = useStore(this.$store)
+  private repository: VStore = useStore(this.$store)
   public searchWord: string = ''
 
   public async mounted(): void {
-    await this.store.illust.refresh()
+    await this.repository.illust.refresh()
   }
 
   public get illustList(): Illust[] {
-    return this.store.illust.filteredIllustList
+    return this.repository.illust.filteredIllustList
   }
 
   public searchIllust(): void {
-    this.store.illust.search()
+    this.repository.illust.search()
   }
 
   public resetSearchWord(): void {

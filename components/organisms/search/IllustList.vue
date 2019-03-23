@@ -20,9 +20,9 @@
             <IllustCard
               :title="illust.title"
               :thumbnail="illust.thumbnailUrl"
-              @click="clickHandler(click)"
               height="30vh"
               width="50vh"
+              @click="clickHandler(click)"
             />
           </v-layout>
         </v-flex>
@@ -43,7 +43,6 @@
             <IllustCard
               :title="illust.title"
               :thumbnail="illust.thumbnailUrl"
-              @click="clickHandler(illust)"
               height="30vh"
               width="70vw"
             />
@@ -57,7 +56,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import IllustCard from '~/components/molecules/card/IllustCard'
-import { Illust } from '~/store/illust';
+import { Illust } from '~/models/illust';
 
 @Component({
   components: {
@@ -69,10 +68,6 @@ export default class IllustList extends Vue {
     required: true
   })
   illustList: Illust[]
-
-  public clickHandler(illust) {
-    console.log(illust)
-  }
 }
 </script>
 

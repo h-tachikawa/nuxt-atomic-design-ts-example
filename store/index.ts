@@ -1,8 +1,8 @@
 import { State, Module, createVuexStore, Mutation } from 'vuex-simple';
-import { IllustModule } from '~/store/illust';
+import { IIllustStore, IllustStore } from '~/store/illust';
 
 export class VStore {
-  @Module() public illust = new IllustModule()
+  @Module() public illust: IIllustStore = new IllustStore()
 
   @State() public globalState = 'initialState';
 

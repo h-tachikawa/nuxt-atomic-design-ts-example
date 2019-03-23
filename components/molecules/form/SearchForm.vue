@@ -14,8 +14,8 @@
         />
       </v-flex>
       <v-btn
-        @click="search"
         color="primary"
+        @click="search"
       >
         {{ btnLabel }}
       </v-btn>
@@ -28,12 +28,20 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class extends Vue {
-  @Prop() value!: string
-  @Prop() label!: string
+  @Prop({
+    required: true
+  })
+  value: string
+
+  @Prop({
+    required: true
+  })
+  label: string
+
   @Prop({
     default: '検索する'
   })
-  btnLabel!: string
+  btnLabel: string
 
   get input() {
     return this.value
