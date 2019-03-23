@@ -19,7 +19,7 @@ module.exports = {
   rules: {
     "no-console": "off",
     "semi": 0,
-    "space-before-function-paren": 0,
+    "space-before-function-paren": 1,
     "no-unused-vars": 0,
   }
 }
