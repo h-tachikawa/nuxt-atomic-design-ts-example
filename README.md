@@ -1,4 +1,4 @@
-# nuxt-atomic-design-with-ts-example
+# nuxt-atomic-design-ts-example
 
 Nuxt.js + TypeScript + Atomic Designの実装例
 
