@@ -38,11 +38,11 @@ export default class Index extends Vue {
   private store: VStore = useStore(this.$store)
   public searchWord: string = ''
 
-  public async mounted (): void {
+  public async mounted(): void {
     await this.store.illust.refresh()
   }
 
-  public get illustList (): Illust[] {
+  public get illustList(): Illust[] {
     return this.store.illust.filteredIllustList
   }
 

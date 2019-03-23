@@ -70,7 +70,7 @@ export default class IllustList extends Vue {
   })
   illustList: Illust[]
 
-  public clickHandler (illust) {
+  public clickHandler(illust) {
     console.log(illust)
   }
 }
