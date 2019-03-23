@@ -71,7 +71,6 @@ export default class IllustList extends Vue {
   illustList: Illust[]
 
   public clickHandler (illust) {
-    console.log('clicked')
     console.log(illust)
   }
 }

@@ -1,57 +1,40 @@
-import { ActionTree, GetterTree, MutationTree } from 'vuex';
+import { Getter, State, Mutation, Action } from 'vuex-simple';
+import { Illust } from '~/models/illust';
+import axios from 'axios'
 
-export const ILLUST_MODULE = 'illust'
-export const ILLUST_SEARCH = 'search'
-export const REPLACE_ILLUST_LIST = 'replaceIllustList'
-export const REFLESH_ILLUST_LIST = 'refreshIllustList'
-
-export interface Illust {
-  albumId: number
-  id: number
-  thumbnailUrl: string
-  title: string
-  url: string
+export interface IllustResponse {
+  data: Illust[]
 }
 
-export interface IllustState {
-  illustList: Illust[] // Illustインターフェースを定義してそれの配列を持たせる
-}
+export class IllustModule {
+  @State() private illustList: Illust[] = [];
 
-// UIからアクセス不可にする
-export const state: IllustState = {
-  illustList: []
-}
+  @Mutation()
+  public REPLACE_ILLUST_LIST(newIllustList: Illust[]) {
+    this.illustList = newIllustList
+  }
 
-/**
- * stateの中の一部データのみを取り出すなどのフィルターの役割を持たせる(例: 男女混合データの中から男のみ取り出す)
- * また、例えばAPI側がレガシーになっておりUIから使いにくい形になってしまっている場合などは、
- * ここでUI側から使いやすいモデルに変換したものを返すという手もある。(「ドメイン駆動 Vuex」でググると参考になるかも)
- */
-export const getters: GetterTree<IllustState, IllustState> = {
-  filterdIllustList: (state: IllustState): Illust[] => {
+  @Mutation()
+  public REFRESH_ILLUST_LIST() {
+    this.illustList = []
+  }
+
+  @Getter()
+  public get filteredIllustList() {
     // APIから5000件データが返ってくるが開発しにくいので10件に絞って返す
-    return state.illustList.slice(0, 10)
+    return this.illustList.slice(0, 10)
   }
-}
 
-// 同期的変更のみを行うこと
-export const mutations: MutationTree<IllustState> = {
-  [REPLACE_ILLUST_LIST] (state: IllustState, photos: Illust[]) {
-    state.illustList = photos
-  },
-  [REFLESH_ILLUST_LIST] (state) {
-    state.illustList = []
-  }
-}
-
-// UIからのリクエストを受け付け、APIにリクエストを送信する/APIからのレスポンスをmutationに受け渡す
-export const actions: ActionTree<IllustState, IllustState> = {
-  [ILLUST_SEARCH] (ctx, searchWord) {
-    this.$axios.$get('https://jsonplaceholder.typicode.com/photos').then((photos: Illust[]) => {
-      ctx.commit(REPLACE_ILLUST_LIST, photos)
+  @Action()
+  public search() {
+    axios.get('https://jsonplaceholder.typicode.com/photos').then((illustResponse: IllustResponse) => {
+      console.log('response', illustResponse);
+      this.REPLACE_ILLUST_LIST(illustResponse.data)
     })
-  },
-  [REFLESH_ILLUST_LIST] (ctx) {
-    ctx.commit(REFLESH_ILLUST_LIST)
+  }
+
+  @Action()
+  public refresh() {
+    this.REFRESH_ILLUST_LIST()
   }
 }
