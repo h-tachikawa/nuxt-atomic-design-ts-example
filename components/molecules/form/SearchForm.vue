@@ -7,7 +7,7 @@
     >
       <v-flex xs7>
         <v-text-field
-          v-model="input"
+          v-model="searchWord"
           :append-icon="input ? 'close' : undefined"
           :label="label"
           @click:append="$emit('reset')"
@@ -24,35 +24,39 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 
 @Component
-export default class extends Vue {
+export default class SearchForm extends Vue {
   @Prop({
     required: true
   })
-  value: string
+  value: string = ''
 
   @Prop({
     required: true
   })
-  label: string
+  label: string = ''
 
   @Prop({
     default: '検索する'
   })
-  btnLabel: string
+  btnLabel: string = ''
 
-  get input() {
+  @Emit()
+  input(searchWord: string) {
+    return searchWord
+  }
+
+  @Emit()
+  public search() {}
+
+  get searchWord() {
     return this.value
   }
 
-  set input(inp) {
-    this.$emit('input', inp)
-  }
-
-  public search() {
-    this.$emit('search')
+  set searchWord(searchWord: string) {
+    this.input(searchWord)
   }
 }
 </script>

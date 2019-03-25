@@ -36,19 +36,19 @@ import { VStore } from '@/store';
   }
 })
 export default class Index extends Vue {
-  private repository: VStore = useStore(this.$store)
+  private store: VStore = useStore(this.$store)
   public searchWord: string = ''
 
-  public async mounted(): void {
-    await this.repository.illust.refresh()
+  public async mounted(): Promise<void> {
+    await this.store.illust.refresh()
   }
 
   public get illustList(): Illust[] {
-    return this.repository.illust.filteredIllustList
+    return this.store.illust.filteredIllustList
   }
 
-  public searchIllust(): void {
-    this.repository.illust.search()
+  public async searchIllust(): Promise<void> {
+    await this.store.illust.search()
   }
 
   public resetSearchWord(): void {

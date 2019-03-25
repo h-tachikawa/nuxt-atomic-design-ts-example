@@ -22,7 +22,6 @@
               :thumbnail="illust.thumbnailUrl"
               height="30vh"
               width="50vh"
-              @click="clickHandler(click)"
             />
           </v-layout>
         </v-flex>
@@ -67,7 +66,7 @@ export default class IllustList extends Vue {
   @Prop({
     required: true
   })
-  illustList: Illust[]
+  illustList: Illust[] = []
 }
 </script>
 

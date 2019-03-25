@@ -23,16 +23,16 @@ export default class IllustCard extends Vue {
     required: true,
     default: 'タイトルなし'
   })
-  title: string
+  title: string = ''
 
   @Prop({
     required: true
   })
-  thumbnail: string
+  thumbnail: string = ''
 
-  @Prop() height: string
+  @Prop() height: string = ''
 
-  @Prop() width: string
+  @Prop() width: string = ''
 }
 </script>
 
