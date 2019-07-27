@@ -8,6 +8,9 @@
       <v-flex xs7>
         <v-text-field
           v-model="searchWord"
+          v-validate="'required|max:10'"
+          data-vv-name="検索ワード"
+          :error-messages="errors.collect('検索ワード')"
           :append-icon="input ? 'close' : undefined"
           :label="label"
           @click:append="$emit('reset')"
